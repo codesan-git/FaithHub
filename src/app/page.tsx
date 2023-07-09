@@ -1,6 +1,7 @@
 import getArticles from '@/action/getArticles'
 import Articles from '@/components/articles/Articles'
 import Hero from '@/components/hero/Hero'
+import { motion } from "framer-motion";
 
 export default async function Home() {
   const heroImage = "https://media.tenor.com/lXSv1AxSvMkAAAAd/pemandangan-scenery.gif"
@@ -10,15 +11,15 @@ export default async function Home() {
     <>
       <Hero heroImage={heroImage} />
       <div className='flex gap-4 my-4'>
-      {getArticle.map((data: any) => (
-        <Articles
-          key={data.id}
-          ArticlesData={data}
-          image={data.image}
-          body={data.author.name}
-          title={data.title}
-        />
-      ))}
+          {getArticle.map((data: any) => (
+            <Articles
+              key={data.id}
+              ArticlesData={data}
+              image={data.image}
+              body={data.author.name}
+              title={data.title}
+            />
+          ))}
       </div>
     </>
   )
