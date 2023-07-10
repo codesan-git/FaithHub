@@ -11,6 +11,8 @@ import {
 } from "@/components/ui/card"
 import Image from "next/image"
 import { SafeArticles } from "@/type"
+import useNativeLazyLoading from '@charlietango/use-native-lazy-loading';
+import { useInView } from 'react-intersection-observer';
 
 interface ArticlesProps {
     image: string,
@@ -43,24 +45,37 @@ const Articles: FC<ArticlesProps> = memo(
             }
         };
 
+        const supportsLazyLoading = useNativeLazyLoading();
+        const { ref, inView } = useInView({
+            triggerOnce: true,
+            rootMargin: '200px 0px',
+            skip: supportsLazyLoading !== false,
+        });
+
         return (
             <motion.ul variants={container} initial="hidden" animate="visible">
                 <motion.li key={ArticlesData.id} onClick={() => router.push(`/detail-article/${ArticlesData.id}`)} variants={item} initial={{ scale: 0 }}
-                    animate={{ rotate: 360, scale: 1 }}
+                    animate={{ scale: 1 }}
                     transition={{
-                        type: "spring",
+                        ease:"linear",
                         stiffness: 260,
-                        damping: 20
+                        damping: 20,
+                        duration:2,
+                        x:{duration:1},
                     }}>
                     <Card className="w-[350px]">
-                        <CardHeader>
-                            <Image
-                                src={image}
-                                alt=""
-                                width={1500}
-                                height={1500}
-                                className='rounded-md'
-                            />
+                        <CardHeader ref={ref}>
+                            {
+                                inView || supportsLazyLoading ? (
+                                    <Image
+                                        src={image}
+                                        alt=""
+                                        width={1500}
+                                        height={1500}
+                                        className='rounded-md transform transition duration-500 hover:scale-110'
+                                    />
+                                ) : null
+                            }
                         </CardHeader>
                         <CardContent>
                             <CardTitle>{title}</CardTitle>

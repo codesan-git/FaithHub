@@ -16,7 +16,7 @@ import {
 
 export function Profile() {
     return (
-        <div className="sm:hidden lg:block relative z-10 flex max-w-max flex-1 items-center justify-center">
+        <div className="sm:hidden lg:block relative z-10 flex max-w-max my-auto flex-1 items-center justify-center">
             <DropdownMenu>
                 <DropdownMenuTrigger asChild>
                     <Button variant="default">Profile</Button>
