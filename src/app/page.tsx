@@ -1,7 +1,6 @@
 import getArticles from '@/action/getArticles'
 import Articles from '@/components/articles/Articles'
 import Hero from '@/components/hero/Hero'
-import { motion } from "framer-motion";
 
 export default async function Home() {
   const heroImage = "https://media.tenor.com/lXSv1AxSvMkAAAAd/pemandangan-scenery.gif"
