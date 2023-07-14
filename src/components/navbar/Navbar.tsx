@@ -14,7 +14,7 @@ const Navbar: FC<NavbarProps> = ({ }) => {
         {/* web view */}
         <Container>
             <div className='flex justify-between'>
-                <div className='flex py-5 px-5 z-50'>
+                <div className='flex py-5 px-5 z-50 gap-4'>
                     <Logo logoSrc={logoSrc} />
                     <Menu />
                 </div>
