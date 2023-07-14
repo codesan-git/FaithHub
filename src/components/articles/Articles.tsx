@@ -53,8 +53,8 @@ const Articles: FC<ArticlesProps> = memo(
         });
 
         return (
-            <motion.ul variants={container} initial="hidden" animate="visible">
-                <motion.li key={ArticlesData.id} onClick={() => router.push(`/detail-article/${ArticlesData.id}`)} variants={item} initial={{ scale: 0 }}
+            <motion.div variants={container} initial="hidden" animate="visible" className='mx-auto'>
+                <motion.div key={ArticlesData.id} onClick={() => router.push(`/detail-article/${ArticlesData.id}`)} variants={item} initial={{ scale: 0 }}
                     animate={{ scale: 1 }}
                     transition={{
                         ease:"linear",
@@ -62,8 +62,9 @@ const Articles: FC<ArticlesProps> = memo(
                         damping: 20,
                         duration:2,
                         x:{duration:1},
-                    }}>
-                    <Card className="w-[350px]">
+                    }}
+                    >
+                    <Card className="lg:w-[350px]">
                         <CardHeader ref={ref}>
                             {
                                 inView || supportsLazyLoading ? (
@@ -72,7 +73,7 @@ const Articles: FC<ArticlesProps> = memo(
                                         alt=""
                                         width={1500}
                                         height={1500}
-                                        className='rounded-md transform transition duration-500 hover:scale-110'
+                                        className='rounded-md transform transition duration-500 hover:scale-110 w-56 h-56 mx-auto'
                                     />
                                 ) : null
                             }
@@ -82,8 +83,8 @@ const Articles: FC<ArticlesProps> = memo(
                             <CardDescription>{body}</CardDescription>
                         </CardContent>
                     </Card>
-                </motion.li>
-            </motion.ul>
+                </motion.div>
+            </motion.div>
         )
     }
 )

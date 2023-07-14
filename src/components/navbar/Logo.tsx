@@ -6,7 +6,7 @@ interface LogoProps {
 }
 
 const Logo: FC<LogoProps> = ({ logoSrc }) => {
-    return <div className='relative z-10 flex max-w-max flex-1 items-center justify-center'>
+    return <div className='hidden lg:block relative z-10 max-w-max flex-1 items-center justify-center'>
         <Image
             src={logoSrc || ""}
             alt={''}

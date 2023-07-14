@@ -7,19 +7,20 @@ export default async function Home() {
   const getArticle = await getArticles()
 
   return (
-    <>
+    <main>
       <Hero heroImage={heroImage} />
-      <div className='flex gap-4 my-4'>
-          {getArticle.map((data: any) => (
+      <div className='group flex gap-4 my-4'>
+        {getArticle.map((data: any) => (
+          <div key={data.id} className='flex mx-auto items-center'>
             <Articles
-              key={data.id}
               ArticlesData={data}
               image={data.image}
               body={data.author.name}
               title={data.title}
             />
-          ))}
+          </div>
+        ))}
       </div>
-    </>
+    </main>
   )
 }
