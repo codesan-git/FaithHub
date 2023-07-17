@@ -1,14 +1,21 @@
-"use client";
+"use client"
 
-import React, { useEffect, useState } from "react";
-import {GiOrangeSlice, GiCoconuts} from "react-icons/gi"
-import { useTheme } from "next-themes";
+import * as React from "react"
+import { MoonIcon, SunIcon } from "@radix-ui/react-icons"
+import { useTheme } from "next-themes"
+import { GiCoconuts } from "react-icons/gi"
+import { Button } from "@/components/ui/button"
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu"
+import { useEffect, useState } from "react"
 
-const Themechanger = () => {
+export function ThemeChanger() {
+  const { theme, setTheme } = useTheme()
   const [mounted, setMounted] = useState(false);
-  const { theme, setTheme } = useTheme();
-
-  // useEffect only runs on the client, so now we can safely show the UI
 
   useEffect(() => {
     setMounted(true);
@@ -17,17 +24,35 @@ const Themechanger = () => {
   if (!mounted) {
     return null;
   }
-
   const light = theme === "light";
-  return (
-    <button className="fixed z-40 bottom-5 right-5 dark:bg-gray-900 dark:text-yellow-400 bg-slate-300 text-gray-900 w-10 h-10 rounded-full flex justify-center items-center">
-      {light ? (
-        <GiCoconuts color="#965a3e" onClick={() => setTheme("dark")} size={27} />
-      ) : (
-        <GiOrangeSlice onClick={() => setTheme("light")} size={27} />
-      )}
-    </button>
-  );
-};
 
-export default Themechanger;
+  return (
+    <DropdownMenu>
+      <DropdownMenuTrigger asChild>
+        <Button variant="outline" size="icon">
+          {light ?
+            (
+              <GiCoconuts className="h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
+            )
+            :
+            (
+              <MoonIcon className="h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
+            )
+          }
+          <span className="sr-only">Toggle theme</span>
+        </Button>
+      </DropdownMenuTrigger>
+      <DropdownMenuContent align="end">
+        <DropdownMenuItem onClick={() => setTheme("light")}>
+          Light
+        </DropdownMenuItem>
+        <DropdownMenuItem onClick={() => setTheme("dark")}>
+          Dark
+        </DropdownMenuItem>
+        <DropdownMenuItem onClick={() => setTheme("system")}>
+          System
+        </DropdownMenuItem>
+      </DropdownMenuContent>
+    </DropdownMenu>
+  )
+}

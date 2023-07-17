@@ -1,3 +1,13 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+:root {
+  --themes: 300 10% 94%;
+  --themes-foreground: 20 31% 46%;
+}
+
+[data-theme='dark'] {
+  --themes: 351 94% 69%;
+  --themes-foreground: 300 10% 94%;
+}
