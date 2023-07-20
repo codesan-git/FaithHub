@@ -1,3 +1,4 @@
+'use client'
 import { Button } from "@/components/ui/button"
 import {
     DropdownMenu,
@@ -13,8 +14,11 @@ import {
     DropdownMenuSubTrigger,
     DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
+import { useRouter } from "next/navigation"
+
 
 export function Profile() {
+    const router = useRouter();
     return (
         <div className="sm:hidden lg:block relative z-10 flex max-w-max flex-1 items-center justify-center">
             <DropdownMenu>
@@ -37,8 +41,8 @@ export function Profile() {
                             Settings
                             <DropdownMenuShortcut>⌘S</DropdownMenuShortcut>
                         </DropdownMenuItem>
-                        <DropdownMenuItem>
-                            Keyboard shortcuts
+                        <DropdownMenuItem onClick={() => router.push('/login')}>
+                            Log In
                             <DropdownMenuShortcut>⌘K</DropdownMenuShortcut>
                         </DropdownMenuItem>
                     </DropdownMenuGroup>

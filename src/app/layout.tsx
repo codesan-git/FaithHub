@@ -21,12 +21,14 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={`${inter.className}`}>
+      <body className={`${inter.className} bg-themes text-themes-foreground dark:bg-themes`}>
         <ThemeProvider>
-          <div className='overflow-x-hidden bg-themes text-themes-foreground dark:bg-themes'>
-            <ClientOnly>
-              <Navbar />
-            </ClientOnly>
+          <div className='overflow-x-hidden'>
+            <div>
+              <ClientOnly>
+                <Navbar />
+              </ClientOnly>
+            </div>
             <div>
               <Container>
                 {children}

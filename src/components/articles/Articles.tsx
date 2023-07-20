@@ -13,6 +13,7 @@ import Image from "next/image"
 import { SafeArticles } from "@/type"
 import useNativeLazyLoading from '@charlietango/use-native-lazy-loading';
 import { useInView } from 'react-intersection-observer';
+import { ScrollArea } from '../ui/scroll-area';
 
 interface ArticlesProps {
     image: string,
@@ -57,13 +58,13 @@ const Articles: FC<ArticlesProps> = memo(
                 <motion.div key={ArticlesData.id} onClick={() => router.push(`/detail-article/${ArticlesData.id}`)} variants={item} initial={{ scale: 0 }}
                     animate={{ scale: 1 }}
                     transition={{
-                        ease:"linear",
+                        ease: "linear",
                         stiffness: 260,
                         damping: 20,
-                        duration:2,
-                        x:{duration:1},
+                        duration: 2,
+                        x: { duration: 1 },
                     }}
-                    >
+                >
                     <Card className="lg:w-[350px]">
                         <CardHeader ref={ref}>
                             {

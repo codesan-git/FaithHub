@@ -1,6 +1,7 @@
 import getArticles from '@/action/getArticles'
 import Articles from '@/components/articles/Articles'
 import Hero from '@/components/hero/Hero'
+import { ScrollArea } from '@/components/ui/scroll-area'
 
 export default async function Home() {
   const heroImage = "https://media.tenor.com/lXSv1AxSvMkAAAAd/pemandangan-scenery.gif"
@@ -9,6 +10,7 @@ export default async function Home() {
   return (
     <main>
       <Hero heroImage={heroImage} />
+      <ScrollArea className='h-full w-full rounded-md p-4'>
       <div className='group flex gap-4 my-4'>
         {getArticle.map((data: any) => (
           <div key={data.id} className='flex mx-auto items-center'>
@@ -21,6 +23,7 @@ export default async function Home() {
           </div>
         ))}
       </div>
+      </ScrollArea>
     </main>
   )
 }
